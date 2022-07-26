@@ -1,21 +1,36 @@
 class Usuarios{
-	constructor(nombre, apellido,libro,autor,mascotas)
+	constructor(nombre, apellido,libro,mascotas)
 	{
 		this.nombre=nombre;
 		this.apellido=apellido;	
-		this.libro=libro;
-		this.autor=autor;	
+		this.libro=libro;	
 		this.mascotas=mascotas;		
 	}	
 	getFullName(){
 		return `${this.nombre} ${this.apellido}`;
 	}
 	countMascotas(){
-		return (mascotas.length)+" mascotas";
+		let name = usuario.nombre
+		return name + " tiene " + (mascotas.length)+" Mascotas";
 	}
 	getBooks(){
-		return (libros.reduce(libro => libro.libro))
+		let tituloLibro = [];
+		let name = usuario.nombre
+
+		for (var i = 0; i <libros.length; i++){
+			tituloLibro.push(libros[i].libro);
+		}
+		return("Libros de " + name + ": " + tituloLibro)
 	}
+	addMascota(){
+		let nuevaMascota = prompt("Ingrese nueva mascota:");
+		mascotas.push(nuevaMascota);
+	}
+
+	addBook(){
+		
+		libros.push({libro:  prompt("Ingrese nombre del libro:"), autor: prompt("Ingrese nombre del autor:")});
+	}	
 };
 
 let mascotas = ['gato','perro'];
@@ -30,20 +45,7 @@ let libros = [
 	autor:'José Hernández',
 },
 ];
-
-function addMascota(){
-		let nuevaMascota = prompt("Ingrese nueva mascota:");
-		mascotas.push(nuevaMascota);
-	}
-
-function addBook(){
-		let nombreLibro = prompt("Ingrese nombre del libro:");
-		let nombreAutor = prompt("Ingrese nombre del autor:");
-		let nuevoLibro = new Usuarios(nombreLibro, nombreAutor);
-
-		libros.push(nuevoLibro);
-	}	
-
+	
 function menu(){
 
 let opciones = ["Añadir Mascota", "Añadir Libro"];
@@ -54,14 +56,14 @@ opciones.forEach((opcion)=>{
 	if(opcion === "Añadir Mascota")
 	{
 		boton.addEventListener("click", ()=>{
-			addMascota();
+			usuario.addMascota();
 			console.log(mascotas);
 		})
 	}
 	else if(opcion === "Añadir Libro")
 	{
 		boton.addEventListener("click", ()=>{
-			addBook();
+			usuario.addBook();
 			console.log(libros);
 		})
 	}
@@ -76,9 +78,13 @@ menu();
 const usuario = new Usuarios('Lucas','Martire',libros,mascotas); 
 
 console.log(libros);
+console.log(mascotas);
+
 console.log(usuario);
 console.log(usuario.getFullName());
 console.log(usuario.countMascotas());
 console.log(usuario.getBooks());
+
+
 
 
